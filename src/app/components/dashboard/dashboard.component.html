@@ -1,31 +1,42 @@
 <div class="container">
+
   <!-- Header Section -->
-  <div class="row mb-4 align-items-center" style="display: flex; border: 1px solid; background-color: grey;justify-content: space-between;
-    padding: 10px;">
+  <div class="row mb-4 align-items-center" style="display: flex; border: 1px solid; background-color: #ae83ea; justify-content: space-between; padding: 0px 18px;">
     <div class="col-6">
       <h1 class="text-center text-md-left">Quotes</h1>
     </div>
     <div class="col-6 text-center text-md-right">
-      <button class="btn btn-danger" title="logout" (click)="logout();">Logout</button>
+      <button class="btn btn-danger" title="Logout" (click)="logout();">Logout</button>
     </div>
   </div>
 
-  <div style="display: flex;justify-content: space-between;">
+  <!-- Add New Quote Button -->
+  <div style="display: flex; justify-content: space-between;">
     <span></span>
-    <span class="btn btn-info" title="create new quotes" (click)="navigateToCreateQuote()">+ Add New</span>
+    <span class="btn btn-info" title="Create New Quote" (click)="navigateToCreateQuote()">+ Add New</span>
   </div>
-  <!-- Items Section -->
+
+  <!-- Items Section (Quotes) -->
   <div class="row">
-    <div *ngFor="let item of items | paginate: { itemsPerPage: 20, currentPage: page }; let i = index;"
-      class="col-lg-4 col-md-6 col-sm-12 mb-4">
-      <p>{{i + 1}}</p>
+    <div *ngFor="let item of items | paginate: { itemsPerPage: 20, currentPage: page }; let i = index;" class="col-lg-4 col-md-6 col-sm-12 mb-4">
+      
+      <!-- Display quote index -->
+      <p>{{ i + 1 }}</p>
+
+      <!-- Quote Card -->
       <div class="card">
         <div class="card-body">
+          <!-- Image associated with the quote -->
           <img [src]="item?.mediaUrl" class="card-img" alt="media image" />
-          <h5 class="card-title">{{ item?.username ?? 'NA'| uppercase }}</h5>
+
+          <!-- Username and quote text -->
+          <h5 class="card-title">{{ item?.username ?? 'NA' | uppercase }}</h5>
           <h3 class="card-text">{{ item?.text ?? 'NA' | titlecase }}</h3>
+
+          <!-- Timestamps -->
           <small class="card-footer">
             Created: {{ item?.createdAt | date:'short' }}<br />
+            <!-- Uncomment if you want to display the updated timestamp -->
             <!-- Updated: {{ item?.updatedAt | date:'short' }} -->
           </small>
         </div>
@@ -33,13 +44,16 @@
     </div>
   </div>
 
-  <!-- Load More Button Container -->
-  <!-- <div *ngIf="items.length > 0" class="load-more-container text-center">
+  <!-- Optional Load More Button -->
+  <!-- 
+  <div *ngIf="items.length > 0" class="load-more-container text-center">
     <button class="btn btn-primary" (click)="onPageChange(page + 1)">Load More</button>
-  </div> -->
+  </div> 
+  -->
 
   <!-- Sticky Pagination Footer -->
-  <div *ngIf="items.length > 0 " class="pagination-footer">
+  <div *ngIf="items.length > 0" class="pagination-footer">
     <pagination-controls (pageChange)="page = $event" class="pagination-ui"></pagination-controls>
   </div>
+
 </div>

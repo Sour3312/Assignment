@@ -1,18 +1,45 @@
+<!-- Close Button to navigate back to the dashboard -->
 <span class="close-btn" (click)="navigateToDashboard();">×</span>
+
 <div class="container">
+  <!-- Form card for quote creation -->
   <div class="form-card">
+
+    <!-- Form Header -->
     <div class="form-header">
       <h2 class="form-title">Create Your Quote</h2>
     </div>
+
+    <!-- Form for quote submission -->
     <form [formGroup]="dataForm" (ngSubmit)="onSubmit()">
+
+      <!-- Text input for the quote message -->
       <div class="form-group">
         <label for="text">Text:</label>
-        <textarea id="text" formControlName="text" class="form-control" rows="4" placeholder="Enter message" required></textarea>
+        <textarea 
+          id="text" 
+          formControlName="text" 
+          class="form-control" 
+          rows="4" 
+          placeholder="Enter message" 
+          required>
+        </textarea>
       </div>
+
+      <!-- File input for media upload -->
       <div class="form-group">
         <label for="mediaUrl">Media URL:</label>
-        <input type="file" id="mediaUrl" formControlName="mediaUrl" class="form-control" placeholder="Select Image" (change)="openFileToSaveImage($event)" required>
+        <input 
+          type="file" 
+          id="mediaUrl" 
+          formControlName="mediaUrl" 
+          class="form-control" 
+          placeholder="Select Image" 
+          (change)="openFileToSaveImage($event)" 
+          required>
       </div>
+
+      <!-- Submit Button -->
       <button type="submit" class="submit-btn">Submit</button>
     </form>
   </div>

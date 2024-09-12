@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, throwError } from 'rxjs';
@@ -8,63 +8,74 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 })
 export class SharedService {
 
+  // Base URL for the API
+  private apiBaseURL: string = 'https://assignment.stage.crafto.app/';
+  
+  // Token to store user session
+  private tkn: any;
+
   constructor(
     private route: Router,
     private httpClient: HttpClient,
   ) { }
 
-  private apiBaseURL: any = 'https://assignment.stage.crafto.app/';
-  private tkn: any;
-
-  initLogin() {
-    debugger;
-    if (localStorage.getItem('userDetails')) {
-      console.log('already loggedIn!!');
-      const paramsString = window.location.href.split('#')[1];
-      if (paramsString) {
-        this.route.navigate(['/main/' + paramsString]);
-      } else {
-        this.route.navigate(['/login']);
-        return;
-      }
-      return;
-    } else {
-      this.route.navigate(['/login']);
-      return;
-    }
-  }
-
+  /**
+   * Logs in the user by sending login data to the server.
+   * @param data - The login credentials (email, password, etc.).
+   * @returns An observable that emits the server response or error.
+   */
   login(data: any): Observable<any> {
     return this.httpClient
       .post(this.apiBaseURL + 'logIn', data)
       .pipe(
         map((response) => {
+          // Store the token in local storage
           this.tkn = response;
           localStorage.setItem('token', this.tkn.token);
           return response;
         }),
         catchError((error) => {
+          // Return the error message in case of failure
           return throwError(error.error.msg);
         }),
       );
   }
 
-  logout() {
+  /**
+   * Logs out the user by clearing the local storage and navigating to the home page.
+   */
+  logout(): void {
     localStorage.removeItem("token");
     localStorage.clear();
     this.route.navigate(['']);
   }
 
+  /**
+   * Fetches a paginated list of quotes from the server.
+   * @param limit - The number of quotes to fetch.
+   * @param offset - The starting position for fetching the quotes.
+   * @returns An observable that emits the list of quotes.
+   */
   getQuotes(limit: number, offset: number): Observable<any> {
     const url = `${this.apiBaseURL}getQuotes?limit=${limit}&offset=${offset}`;
     return this.httpClient.get(url);
   }
 
-  createImageUrl(formData: any) {
+  /**
+   * Uploads an image by sending a form data object to the server.
+   * @param formData - The form data containing the image to be uploaded.
+   * @returns An observable that emits the server response.
+   */
+  createImageUrl(formData: any): Observable<any> {
     return this.httpClient.post('https://crafto.app/crafto/v1.0/media/assignment/upload', formData);
   }
 
-  createQuote(formData: any) {
+  /**
+   * Creates a new quote by sending the quote data to the server.
+   * @param formData - The form data containing the quote details.
+   * @returns An observable that emits the server response.
+   */
+  createQuote(formData: any): Observable<any> {
     return this.httpClient.post(this.apiBaseURL + 'postQuote', formData);
   }
 }

@@ -1,4 +1,4 @@
-body{
+body {
   background-color: grey;
 }
 
@@ -11,7 +11,7 @@ body{
   background-color: #f7f7f7;
 }
 
-.container span{
+.container span {
   font-weight: bold;
   color: blueviolet;
   cursor: pointer;
@@ -122,7 +122,8 @@ body{
 
 /* Load More Button Styling */
 .btn-load-more {
-  background-color: #007bff; /* Primary color */
+  background-color: #007bff;
+  /* Primary color */
   border: none;
   color: white;
   font-size: 1rem;
@@ -133,14 +134,17 @@ body{
 }
 
 .btn-load-more:hover {
-  background-color: #0056b3; /* Darker shade on hover */
+  background-color: #0056b3;
+  /* Darker shade on hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 .btn-load-more:focus {
   outline: none;
-  box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5); /* Outline color for focus */
+  box-shadow: 0 0 0 3px rgba(38, 143, 255, 0.5);
+  /* Outline color for focus */
 }
+
 /* Add this to your component's CSS file or global styles */
 
 /* Ensure the header elements align properly on different screen sizes */
@@ -153,13 +157,15 @@ body{
   .text-md-left {
     text-align: center;
   }
+
   .text-md-right {
     text-align: center;
     margin-top: 10px;
   }
 }
 
-.btn-load-more, .btn {
+.btn-load-more,
+.btn {
   border-radius: 4px;
   padding: 10px 20px;
 }

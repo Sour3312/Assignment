@@ -5,9 +5,16 @@ import { CreateComponent } from './components/create/create.component';
 import { AuthGuard } from './security/auth/auth.guard';
 
 export const routes: Routes = [
+  // Redirect empty path to 'init' route
   { path: '', redirectTo: 'init', pathMatch: 'full' },
-  { path: '', component: LoginComponent },
+
+  // Route for initial login page
   { path: 'init', component: LoginComponent },
+
+  // Route for dashboard with AuthGuard protection
   { path: 'dash', canActivate: [AuthGuard], component: DashboardComponent },
+
+  // Route for create component with AuthGuard protection
   { path: 'create', canActivate: [AuthGuard], component: CreateComponent },
 ];
+
