@@ -2,7 +2,14 @@ import { ApplicationConfig } from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
+import { provideHttpClient,withInterceptors } from '@angular/common/http';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { requestInterceptor } from './security/request.interceptor';
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes)]
+  providers: [provideHttpClient(),provideRouter(routes),
+    provideHttpClient(
+      withInterceptors([requestInterceptor])
+    ),
+    { provide: LocationStrategy, useClass: HashLocationStrategy }]
 };
