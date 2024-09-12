@@ -36,7 +36,7 @@ export class SharedService {
         }),
         catchError((error) => {
           // Return the error message in case of failure
-          return throwError(error.error.msg);
+          return throwError(error?.error?.msg);
         }),
       );
   }
