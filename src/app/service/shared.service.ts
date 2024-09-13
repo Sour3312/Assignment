@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { catchError, map, Observable, throwError } from 'rxjs';
+import { AppConstants } from '../security/app.constants';
 
 @Injectable({
   providedIn: 'root'
@@ -9,15 +10,25 @@ import { catchError, map, Observable, throwError } from 'rxjs';
 export class SharedService {
 
   // Base URL for the API
-  private apiBaseURL: string = 'https://assignment.stage.crafto.app/';
-  
+  private apiBaseURL1: string = 'https://assignment.stage.crafto.app/';
+  private apiBaseURL2: string = 'https://crafto.app/crafto/v1.0/media/assignment/upload';
+
   // Token to store user session
   private tkn: any;
 
   constructor(
     private route: Router,
-    private httpClient: HttpClient,
+    private httpClient: HttpClient
   ) { }
+
+  public initLogin() {
+    if (localStorage.getItem('token')) {
+      console.log('Already LoggedIn!!');
+      return;
+    } else {
+      this.route.navigate([AppConstants.URLs.HOME]);
+    }
+  }
 
   /**
    * Logs in the user by sending login data to the server.
@@ -26,12 +37,12 @@ export class SharedService {
    */
   login(data: any): Observable<any> {
     return this.httpClient
-      .post(this.apiBaseURL + 'login', data)
+      .post(this.apiBaseURL1 + 'login', data)
       .pipe(
         map((response) => {
           // Store the token in local storage
           this.tkn = response;
-          localStorage.setItem('token', this.tkn.token);
+          localStorage.setItem('token', this.tkn.token); // we can encrypt the token as well
           return response;
         }),
         catchError((error) => {
@@ -47,7 +58,7 @@ export class SharedService {
   logout(): void {
     localStorage.removeItem("token");
     localStorage.clear();
-    this.route.navigate(['']);
+    this.route.navigate([AppConstants.URLs.HOME]);
   }
 
   /**
@@ -57,7 +68,7 @@ export class SharedService {
    * @returns An observable that emits the list of quotes.
    */
   getQuotes(limit: number, offset: number): Observable<any> {
-    const url = `${this.apiBaseURL}getQuotes?limit=${limit}&offset=${offset}`;
+    const url = `${this.apiBaseURL1}getQuotes?limit=${limit}&offset=${offset}`;
     return this.httpClient.get(url);
   }
 
@@ -67,7 +78,7 @@ export class SharedService {
    * @returns An observable that emits the server response.
    */
   createImageUrl(formData: any): Observable<any> {
-    return this.httpClient.post('https://crafto.app/crafto/v1.0/media/assignment/upload', formData);
+    return this.httpClient.post(this.apiBaseURL2, formData);
   }
 
   /**
@@ -76,6 +87,6 @@ export class SharedService {
    * @returns An observable that emits the server response.
    */
   createQuote(formData: any): Observable<any> {
-    return this.httpClient.post(this.apiBaseURL + 'postQuote', formData);
+    return this.httpClient.post(this.apiBaseURL1 + 'postQuote', formData);
   }
 }

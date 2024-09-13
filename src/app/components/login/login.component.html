@@ -6,30 +6,18 @@
 
     <!-- Form for login submission with two-way data binding and validation -->
     <form (ngSubmit)="onSubmit()" #loginForm="ngForm">
-      
+
       <!-- Username input field -->
       <div class="form-group">
         <label for="username">Username:</label>
-        <input 
-          type="text" 
-          id="username" 
-          name="username" 
-          [(ngModel)]="loginData.username" 
-          class="form-control" 
-          placeholder="Enter username" 
-          required>
+        <input type="text" id="username" name="username" [(ngModel)]="loginData.username" class="form-control"
+          placeholder="Enter username" required>
       </div>
 
       <!-- OTP input field -->
       <div class="form-group">
         <label for="otp">OTP:</label>
-        <input 
-          type="text" 
-          id="otp" 
-          name="otp" 
-          [(ngModel)]="loginData.otp" 
-          class="form-control" 
-          placeholder="Enter OTP" 
+        <input type="text" id="otp" name="otp" [(ngModel)]="loginData.otp" class="form-control" placeholder="Enter OTP"
           required>
       </div>
 

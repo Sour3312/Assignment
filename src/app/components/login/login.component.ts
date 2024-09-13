@@ -2,29 +2,26 @@ import { Component } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedService } from '../../service/shared.service';
 import { Router } from '@angular/router';
+import { AppConstants } from '../../security/app.constants';
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [FormsModule, ReactiveFormsModule],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css'
+  styleUrl: './login.component.css',
 })
 export class LoginComponent {
-
   // Error message to display validation or server errors
   errorMsg: string = '';
 
   // Data model for the login form
   loginData = {
     username: '',
-    otp: ''
+    otp: '',
   };
 
-  constructor(
-    private sharedService: SharedService,
-    private route: Router
-  ) { }
+  constructor(private sharedService: SharedService, private route: Router) {}
 
   /**
    * Submits the login form after validating input fields.
@@ -39,14 +36,13 @@ export class LoginComponent {
       setTimeout(() => {
         this.errorMsg = '';
       }, 1000);
-
     } else {
       // Call login service with the login data
       this.sharedService.login(this.loginData).subscribe(
         (response) => {
           alert('Login successful');
           // Navigate to dashboard on successful login
-          this.route.navigate(['/dash']);
+          this.route.navigate([AppConstants.URLs.DASHBOARD]);
         },
         (error) => {
           // Show error message on invalid details
