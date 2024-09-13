@@ -44,7 +44,7 @@ export class CreateComponent implements OnInit {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
       // Check if the file is of the allowed types (jpeg or png)
-      if (file.type == 'image/jpeg' || file.type == 'image/png') {
+      // if (file.type == 'image/jpeg' || file.type == 'image/png') {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
@@ -59,9 +59,9 @@ export class CreateComponent implements OnInit {
             this.imageUrl = res[0].url; // Store the uploaded image URL
           });
         };
-      } else {
-        alert('Image type should be jpeg/png');
-      }
+      // } else {
+        // alert('Image type should be jpeg/png');
+      // }
     }
   }
 

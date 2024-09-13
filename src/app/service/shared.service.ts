@@ -24,6 +24,7 @@ export class SharedService {
   public initLogin() {
     if (localStorage.getItem('token')) {
       console.log('Already LoggedIn!!');
+      this.route.navigate([AppConstants.URLs.DASHBOARD]);
       return;
     } else {
       this.route.navigate([AppConstants.URLs.HOME]);
