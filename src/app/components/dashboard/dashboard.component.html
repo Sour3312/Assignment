@@ -1,8 +1,6 @@
 <div class="container">
   <!-- Fixed Header Section -->
-  <div
-    class="row mb-4 align-items-center fixed-header"
-    style="
+  <div class="row mb-4 align-items-center fixed-header" style="
       display: flex;
       border-radius: 0 0 8px 8px;
       background: linear-gradient(135deg, #ae83ea, #8b5ed7);
@@ -14,21 +12,16 @@
       top: 0;
       left: 0;
       width: 100%;
-      max-width: 90vw;
-    "
-  >
+      max-width: 100vw;
+    ">
     <div class="col-6">
       <h1 class="text-white font-weight-bold text-center text-md-left">
         Quotes
       </h1>
     </div>
     <div class="col-6 text-center text-md-right">
-      <button
-        class="btn btn-outline-light btn-lg"
-        title="Logout"
-        (click)="logout()"
-        style="border-radius: 20px; transition: background-color 0.3s ease"
-      >
+      <button class="btn btn-outline-light btn-lg" title="Logout" (click)="logout()"
+        style="border-radius: 20px; transition: background-color 0.3s ease; margin: 0px 30px ;">
         Logout
       </button>
     </div>
@@ -37,45 +30,31 @@
   <!-- Add New Quote Button -->
   <div style="display: flex; justify-content: space-between; margin-top: 100px">
     <span></span>
-    <span
-      class="btn btn-info btn-lg font-weight-bold"
-      title="Create New Quote"
-      (click)="navigateToCreateQuote()"
-      style="border-radius: 25px"
-    >
+    <span class="btn btn-info btn-lg font-weight-bold" title="Create New Quote" (click)="navigateToCreateQuote()"
+      style="border-radius: 25px">
       + Add New
     </span>
   </div>
 
   <!-- Items Section (Quotes) -->
   <div class="row">
-    <div
-      *ngFor="
+    <div *ngFor="
         let item of items | paginate : { itemsPerPage: 20, currentPage: page };
         let i = index
-      "
-      class="col-lg-4 col-md-6 col-sm-12 mb-4"
-    >
+      " class="col-lg-4 col-md-6 col-sm-12 mb-4">
       <!-- Display quote index -->
       <p class="text-muted font-weight-light">{{ i + 1 }}</p>
 
       <!-- Quote Card -->
-      <div
-        class="card"
-        style="
+      <div class="card" style="
           border-radius: 12px;
           box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.1);
           transition: transform 0.3s ease;
-        "
-      >
+        ">
         <div class="card-body">
           <!-- Image associated with the quote -->
-          <img
-            [src]="item?.mediaUrl"
-            class="card-img-top"
-            alt="media image"
-            style="border-radius: 12px; height: 200px; object-fit: cover"
-          />
+          <img [src]="item?.mediaUrl" class="card-img-top" alt="media image"
+            style="border-radius: 12px; height: 200px; object-fit: cover" />
 
           <!-- Username and quote text -->
           <h5 class="card-title text-primary mt-3">
@@ -97,21 +76,15 @@
   </div>
 
   <!-- Sticky Pagination Footer (Kept visible during API call) -->
-  <div
-    class="pagination-footer"
-    style="
+  <div class="pagination-footer" style="
       padding: 10px 0;
       background-color: #f9f9f9;
       box-shadow: 0px -2px 8px rgba(0, 0, 0, 0.1);
       position: sticky;
       bottom: 0;
       z-index: 100;
-    "
-  >
-    <pagination-controls
-      (pageChange)="page = $event"
-      class="pagination-ui"
-      style="display: flex; justify-content: center"
-    ></pagination-controls>
+    ">
+    <pagination-controls (pageChange)="page = $event" class="pagination-ui"
+      style="display: flex; justify-content: center"></pagination-controls>
   </div>
 </div>
