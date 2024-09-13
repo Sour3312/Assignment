@@ -44,16 +44,18 @@ export class CreateComponent implements OnInit {
     const file = event.target.files[0]; // Get the selected file
     if (file) {
       // Check if the file is of the allowed types (jpeg or png)
-      if (file.type === 'image/jpeg' || file.type === 'image/png') {
+      if (file.type == 'image/jpeg' || file.type == 'image/png') {
         const reader = new FileReader();
         reader.readAsDataURL(file);
 
         reader.onload = () => {
           const formData = new FormData();
           formData.append('file', file, file.name);
-
+          alert(file.name)
           // Send the image to the server and get the image URL in response
           this.sharedService.createImageUrl(formData).subscribe((res) => {
+            alert('image uploaded');
+            alert(res[0].url);
             this.imageUrl = res[0].url; // Store the uploaded image URL
           });
         };
