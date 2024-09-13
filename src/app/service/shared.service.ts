@@ -26,7 +26,7 @@ export class SharedService {
    */
   login(data: any): Observable<any> {
     return this.httpClient
-      .post(this.apiBaseURL + 'logIn', data)
+      .post(this.apiBaseURL + 'login', data)
       .pipe(
         map((response) => {
           // Store the token in local storage

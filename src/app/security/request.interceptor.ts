@@ -8,7 +8,7 @@ export const requestInterceptor: HttpInterceptorFn = (req, next) => {
   // Clone the request and attach the Authorization header with the token if it exists
   req = req.clone({
     setHeaders: {
-      Authorization: token  
+      Authorization: token ? token : ''
     }
   });
 
