@@ -31,10 +31,8 @@ The project has been deployed and can be accessed at [http://93.127.166.53/app/b
 \*Note:\*\* This deployment will be valid until 14 September 2024.
 
 ## Also You can find the APK of this project
-[https://drive.google.com/file/d/1-h0t0_e_ZoHP7jHaGTZG8LNj1DwFqKyr/view?usp=drive_link](https://drive.google.com/file/d/1-h0t0_e_ZoHP7jHaGTZG8LNj1DwFqKyr/view?usp=drive_link)
 
-The project has been deployed and can be accessed at [http://93.127.166.53/app/browser](http://93.127.166.53/app/browser).
-\*Note:\*\* This deployment will be valid until 14 September 2024.
+[https://drive.google.com/file/d/1-h0t0_e_ZoHP7jHaGTZG8LNj1DwFqKyr/view?usp=drive_link](https://drive.google.com/file/d/1-h0t0_e_ZoHP7jHaGTZG8LNj1DwFqKyr/view?usp=drive_link)
 
 ## Project Flow
 
