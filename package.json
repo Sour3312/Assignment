@@ -1,6 +1,11 @@
 {
   "name": "Quote App",
-  "version": "0.0.0",
+  "version": "5.0.5",
+  "author": {
+    "name": "Sourabh Kr. Mahato",
+    "email": "sourabhkumarmahato@gmail.com",
+    "url": "https://github.com/sour3312"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
