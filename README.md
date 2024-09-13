@@ -43,7 +43,7 @@ The project has been deployed and can be accessed at [http://93.127.166.53/app/b
 3.  Create a New Quote Post
 
     - Click on the\*+ Add New\*\* option to create your own quote post.
-    - Enter your thoughts and select an image for the post.
+    - Enter your thoughts and select an image for the post. (**Note** : only jpeg & png)
     - Submit the form to create the post.
 
 4.  View Dashboard
