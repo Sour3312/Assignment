@@ -7,7 +7,7 @@ export class AppConstants {
 
     public static URLs = {
         "HOME" : "",
-        "LOGIN": "/login",
+        "LOGIN": "/init",
         "DASHBOARD": "/dash",
         "CREATEQUOTE":"/create"
     }
